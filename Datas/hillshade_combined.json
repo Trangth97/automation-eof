@@ -1,0 +1,13 @@
+{
+    "name": "hillshade_combined",
+    "folder_id": "",
+    "key": "hillshade",
+    "image_id": "795725f7-861f-4dc7-9a90-f181611a9815",
+    "z": "2",
+    "s": "2",
+    "az": "320",
+    "alt": "45",
+    "compute_edges": false,
+    "zevenbergen_thorne": true,
+    "shading": "combined"
+}
