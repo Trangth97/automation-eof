@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 4.1.3 (Python 3.9.5 on win32)" generated="20220602 10:04:52.340" rpa="false" schemaversion="2">
+<suite id="s1" name="Aspect" source="C:\Users\skymap\Desktop\automation-eof\ARDToolkit\Aspect.robot">
+<test id="s1-t1" name="Hillshade With Combined Type">
+<kw name="Get CUDIR" library="BasePage">
+<var>${root}</var>
+<kw name="Set Variable" library="BuiltIn">
+<var>${cur_dir}</var>
+<arg>C:\\Users\\skymap\\Desktop\\automation-eof</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20220602 10:04:54.469" level="INFO">${cur_dir} = C:\Users\skymap\Desktop\automation-eof</msg>
+<status status="PASS" starttime="20220602 10:04:54.469" endtime="20220602 10:04:54.469"/>
+</kw>
+<msg timestamp="20220602 10:04:54.469" level="INFO">${root} = C:\Users\skymap\Desktop\automation-eof</msg>
+<status status="PASS" starttime="20220602 10:04:54.469" endtime="20220602 10:04:54.469"/>
+</kw>
+<kw name="Hillshade API Testing">
+<arg>${root}/Datas/hillshade_combined.json</arg>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${header}</var>
+<arg>Accept=*/*</arg>
+<arg>Authorization=${authorization}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20220602 10:04:54.485" level="INFO">${header} = {'Accept': '*/*', 'Authorization': 'Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAwMCwibmFtZSI6Ik1pbmggTmfhu41jIiwiZW1haWwiOiJtaW5obmdvY2NudGVyQGdtYWlsLmNvbSIsImNvdW50cnkiOiJWaWV0bmFtIiwicGlj...</msg>
+<status status="PASS" starttime="20220602 10:04:54.469" endtime="20220602 10:04:54.485"/>
+</kw>
+<kw name="Load JSON From File" library="JSONLibrary">
+<var>${json}</var>
+<arg>${file_name}</arg>
+<doc>Load JSON from file.</doc>
+<msg timestamp="20220602 10:04:54.485" level="INFO">${json} = {'name': 'hillshade_combined', 'folder_id': '', 'key': 'hillshade', 'image_id': '795725f7-861f-4dc7-9a90-f181611a9815', 'z': '2', 's': '2', 'az': '320', 'alt': '45', 'compute_edges': False, 'zevenberg...</msg>
+<status status="PASS" starttime="20220602 10:04:54.485" endtime="20220602 10:04:54.485"/>
+</kw>
+<kw name="Create Session" library="RequestsLibrary">
+<arg>hillshade</arg>
+<arg>${host}</arg>
+<arg>headers=${header}</arg>
+<arg>verify=True</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20220602 10:04:54.485" level="INFO">Creating Session using : alias=hillshade, url=https://api-aws.eofactory.ai, headers={'Accept': '*/*', 'Authorization': 'Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAwMCwibmFtZSI6Ik1pbmggTmfhu41jIiwiZW1haWwiOiJtaW5obmdvY2NudGVyQGdtYWlsLmNvbSIsImNvdW50cnkiOiJWaWV0bmFtIiwicGljdHVyZSI6bnVsbCwiaWF0IjoxNjUyNDI4NTkwLCJleHAiOjE2NTUwMjA1OTB9.ni5i3_HpVZSIn2NzpB3z3FfnoCbo2LVFy-8nHEuyvSUclnapGd-WhKTm50nMvWchlZT7r4xS4aIaI1-xlHr3nQ'},                     cookies={}, auth=None, timeout=None, proxies=None, verify=True,                     debug=0 </msg>
+<status status="PASS" starttime="20220602 10:04:54.485" endtime="20220602 10:04:54.485"/>
+</kw>
+<kw name="POST On Session" library="RequestsLibrary">
+<var>${resp}</var>
+<arg>hillshade</arg>
+<arg>url=/api/workspaces/${WKS_ID}/tools</arg>
+<arg>params=group=ard&amp;type=hillshade&amp;region=sea</arg>
+<arg>json=${json}</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<msg timestamp="20220602 10:04:54.958" level="INFO">POST Request : url=https://api-aws.eofactory.ai/api/workspaces/03bab128-da6d-4632-801d-75c6708fe8b1/tools?group=ard&amp;type=hillshade&amp;region=sea 
+ path_url=/api/workspaces/03bab128-da6d-4632-801d-75c6708fe8b1/tools?group=ard&amp;type=hillshade&amp;region=sea 
+ headers={'User-Agent': 'python-requests/2.26.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Authorization': 'Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAwMCwibmFtZSI6Ik1pbmggTmfhu41jIiwiZW1haWwiOiJtaW5obmdvY2NudGVyQGdtYWlsLmNvbSIsImNvdW50cnkiOiJWaWV0bmFtIiwicGljdHVyZSI6bnVsbCwiaWF0IjoxNjUyNDI4NTkwLCJleHAiOjE2NTUwMjA1OTB9.ni5i3_HpVZSIn2NzpB3z3FfnoCbo2LVFy-8nHEuyvSUclnapGd-WhKTm50nMvWchlZT7r4xS4aIaI1-xlHr3nQ', 'Content-Length': '240', 'Content-Type': 'application/json'} 
+ body=b'{"name": "hillshade_combined", "folder_id": "", "key": "hillshade", "image_id": "795725f7-861f-4dc7-9a90-f181611a9815", "z": "2", "s": "2", "az": "320", "alt": "45", "compute_edges": false, "zevenbergen_thorne": true, "shading": "combined"}' 
+ </msg>
+<msg timestamp="20220602 10:04:54.958" level="INFO">POST Response : url=https://api-aws.eofactory.ai/api/workspaces/03bab128-da6d-4632-801d-75c6708fe8b1/tools?group=ard&amp;type=hillshade&amp;region=sea 
+ status=200, reason=OK 
+ headers={'Server': 'nginx/1.14.0 (Ubuntu)', 'Content-Type': 'application/json', 'Transfer-Encoding': 'chunked', 'Connection': 'keep-alive', 'Cache-Control': 'no-cache, private', 'Date': 'Thu, 02 Jun 2022 03:04:55 GMT', 'X-RateLimit-Limit': '200', 'X-RateLimit-Remaining': '198', 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'POST, GET, OPTIONS, PUT, DELETE', 'Access-Control-Allow-Headers': 'Content-Type, Accept, Authorization, X-Requested-With, Application', 'Access-Control-Allow-Credentials': 'true', 'Set-Cookie': 'eofactory_session=Sha0PfiGZpoOML5VtZwdj6YP21DTuLlvvBIMcAEt; expires=Thu, 02-Jun-2022 05:04:55 GMT; Max-Age=7200; path=/; httponly; samesite=lax'} 
+ body={"data":{"task_id":105571},"message":"Task 105571: Hillshade image task created successful"} 
+ </msg>
+<msg timestamp="20220602 10:04:54.958" level="INFO">${resp} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20220602 10:04:54.485" endtime="20220602 10:04:54.958"/>
+</kw>
+<kw name="Append Data to Workbook" library="BasePage">
+<arg>Task ${resp.json()}[data][task_id]</arg>
+<kw name="Open Workbook" library="RPA.Excel.Files">
+<arg>${excel_file}</arg>
+<doc>Open an existing Excel workbook.</doc>
+<msg timestamp="20220602 10:04:54.977" level="INFO">Opened workbook: &lt;RPA.Excel.Files.XlsxWorkbook object at 0x00000251B95FC850&gt;</msg>
+<status status="PASS" starttime="20220602 10:04:54.958" endtime="20220602 10:04:54.977"/>
+</kw>
+<kw name="Create List" library="BuiltIn">
+<var>${list}</var>
+<arg>@{empty}</arg>
+<doc>Returns a list containing given items.</doc>
+<msg timestamp="20220602 10:04:54.977" level="INFO">${list} = []</msg>
+<status status="PASS" starttime="20220602 10:04:54.977" endtime="20220602 10:04:54.977"/>
+</kw>
+<kw name="Append To List" library="Collections">
+<arg>${list}</arg>
+<arg>${task_id}</arg>
+<doc>Adds ``values`` to the end of ``list``.</doc>
+<status status="PASS" starttime="20220602 10:04:54.977" endtime="20220602 10:04:54.977"/>
+</kw>
+<kw name="Append Rows To Worksheet" library="RPA.Excel.Files">
+<arg>${list}</arg>
+<doc>Append values to the end of the worksheet.</doc>
+<status status="PASS" starttime="20220602 10:04:54.977" endtime="20220602 10:04:54.977"/>
+</kw>
+<kw name="Save Workbook" library="RPA.Excel.Files">
+<doc>Save the active workbook.</doc>
+<status status="PASS" starttime="20220602 10:04:54.977" endtime="20220602 10:04:55.009"/>
+</kw>
+<status status="PASS" starttime="20220602 10:04:54.958" endtime="20220602 10:04:55.009"/>
+</kw>
+<status status="PASS" starttime="20220602 10:04:54.469" endtime="20220602 10:04:55.009"/>
+</kw>
+<status status="PASS" starttime="20220602 10:04:54.469" endtime="20220602 10:04:55.009"/>
+</test>
+<doc>Verify Hillshade Tool.</doc>
+<status status="PASS" starttime="20220602 10:04:52.340" endtime="20220602 10:04:55.009"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="1" fail="0" skip="0" id="s1" name="Aspect">Aspect</stat>
+</suite>
+</statistics>
+<errors>
+<msg timestamp="20220602 10:04:54.469" level="ERROR">Error in file 'C:\Users\skymap\Desktop\automation-eof\Login.robot' on line 4: Processing variable file 'C:\Users\skymap\AppData\Local\Programs\Python\Python39\lib\site-packages\IPython\config.py' failed: Importing variable file 'C:\Users\skymap\AppData\Local\Programs\Python\Python39\lib\site-packages\IPython\config.py' failed: ImportError: attempted relative import with no known parent package
+Traceback (most recent call last):
+  File "C:\Users\skymap\AppData\Local\Programs\Python\Python39\lib\site-packages\IPython\config.py", line 10, in &lt;module&gt;
+    from .utils.shimmodule import ShimModule, ShimWarning
+PYTHONPATH:
+  C:\Users\skymap\AppData\Local\Programs\Python\Python39\Scripts\robot.exe
+  C:\Users\skymap\AppData\Local\Programs\Python\Python39\python39.zip
+  C:\Users\skymap\AppData\Local\Programs\Python\Python39\DLLs
+  C:\Users\skymap\AppData\Local\Programs\Python\Python39\lib
+  C:\Users\skymap\AppData\Local\Programs\Python\Python39
+  C:\Users\skymap\AppData\Roaming\Python\Python39\site-packages
+  C:\Users\skymap\AppData\Local\Programs\Python\Python39\lib\site-packages
+  C:\Users\skymap\AppData\Local\Programs\Python\Python39\lib\site-packages\win32
+  C:\Users\skymap\AppData\Local\Programs\Python\Python39\lib\site-packages\win32\lib
+  C:\Users\skymap\AppData\Local\Programs\Python\Python39\lib\site-packages\Pythonwin
+  C:\Users\skymap\AppData\Local\Programs\Python\Python39\lib\site-packages\IPython\extensions</msg>
+</errors>
+</robot>
